@@ -1,10 +1,12 @@
 import socket
 
 class Light():
-    def __init__(self, ip, port=5000):
+    def __init__(self, ip, port=5000, broadcast=False):
         self.ip   = ip
         self.port = port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        if broadcast:
+            self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
     def __send(self, msg):
         self.sock.sendto(bytearray(msg), (self.ip, self.port))

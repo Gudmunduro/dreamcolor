@@ -4,13 +4,14 @@ from dreamcolor import Light
 # Args
 parser = argparse.ArgumentParser()
 parser.add_argument("ip")
+parser.add_argument("--port", type=int)
+parser.add_argument("--broadcast", action="store_true")
 parser.add_argument("action", choices=["on", "off", "dim", "rgb"])
 parser.add_argument("values", nargs=argparse.REMAINDER, type=int)
-parser.add_argument("--port", type=int)
 args = parser.parse_args()
 
 # Create
-light = Light(args.ip, args.port or 5000)
+light = Light(args.ip, args.port or 5000, args.broadcast)
 
 # On/Off
 if args.action == "on":

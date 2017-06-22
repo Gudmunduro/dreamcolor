@@ -52,7 +52,7 @@ class Light():
                 byte_list.append(t[0])
                 byte_list.append(t[1])
                 byte_list.append(t[2])
-            except (ValueError, RuntimeError, IndexError):
+            except:
                 print("Error: Adding values to byte list failed")
         self.__send(byte_list)
     

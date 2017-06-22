@@ -46,10 +46,14 @@ class Light():
         Strobe = 2
         """
 
-        byte_list = [0xaf, 0x10, pattern_type, int(len(pattern) / 3)]
-        for i in pattern:
-            byte_list.append(i)
-        print(byte_list)
+        byte_list = [0xaf, 0x10, pattern_type, int(len(pattern))]
+        for t in pattern:
+            try:
+                byte_list.append(t[0])
+                byte_list.append(t[1])
+                byte_list.append(t[2])
+            except ValueError:
+                print("Error: Adding values to byte list failed")
         self.__send(byte_list)
     
     def speed(self, s=200):
